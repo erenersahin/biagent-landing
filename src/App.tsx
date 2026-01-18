@@ -109,8 +109,8 @@ const FEATURES = [
   },
   {
     Icon: IconLink,
-    title: 'JIRA + GitHub Integration',
-    description: 'Auto-sync tickets, create PRs, respond to review comments. BiAgent fits into your existing workflow.',
+    title: 'Seamless Integration',
+    description: 'Connect your issue tracker and GitHub. Auto-sync tickets, create PRs, respond to reviews. Fits your workflow.',
   },
 ]
 
@@ -197,15 +197,15 @@ function App() {
           <div className="max-w-4xl">
             <p className="section-label text-primary-dark/60 mb-4">/ AI-POWERED DEVELOPMENT</p>
             <h1 className="text-display mb-6">
-              Ship JIRA tickets<br />
-              <span className="text-primary bg-primary-dark px-3 py-1 inline-block">10x faster</span>
+              Ship 10x faster.<br />
+              <span className="text-primary bg-primary-dark px-3 py-1 inline-block">Code cleaner.</span>
             </h1>
             <p className="text-xl md:text-2xl text-text-body max-w-2xl mb-8 leading-relaxed">
-              AI agents that read your tickets, write code, run tests, and create PRs—while you supervise.
+              Less time chasing forgotten unknowns. More time making decisions that matter.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
               <a href="#waitlist" className="btn btn-primary">
-                Get Early Access
+                Start Shipping Faster
               </a>
               <a href="#how-it-works" className="btn btn-secondary">
                 See How It Works
@@ -229,9 +229,9 @@ function App() {
       <section id="how-it-works" className="py-20 px-6 bg-white border-y-2 border-primary-dark scroll-mt-20">
         <div className="max-w-6xl mx-auto">
           <p className="section-label text-primary-dark/60 mb-4">/ 8-STEP PIPELINE</p>
-          <h2 className="text-h2 mb-4">From ticket to PR, fully automated</h2>
+          <h2 className="text-h2 mb-4">From ticket to PR, automatically</h2>
           <p className="text-lg text-text-muted mb-12 max-w-2xl">
-            BiAgent runs an 8-step AI pipeline for every ticket. Watch agents reason through problems in real-time.
+            AI handles the grunt work. You make the calls. Watch agents surface edge cases and unknowns in real-time.
           </p>
 
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
@@ -286,9 +286,9 @@ function App() {
       <section className="pt-20 pb-12 px-6">
         <div className="max-w-6xl mx-auto">
           <p className="section-label text-primary-dark/60 mb-4">/ PROBLEMS SOLVED</p>
-          <h2 className="text-h2 mb-4">Stop context-switching. Start shipping.</h2>
+          <h2 className="text-h2 mb-4">Fewer surprises. Better decisions.</h2>
           <p className="text-lg text-text-muted mb-12 max-w-2xl">
-            BiAgent handles the tedious parts of development so you can focus on what matters.
+            BiAgent surfaces the unknowns early so you can focus on what actually matters.
           </p>
 
           <div className="grid md:grid-cols-2 gap-8">
@@ -297,19 +297,19 @@ function App() {
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
                   <span className="text-error mt-1">✗</span>
-                  <span>Spend 20 min reading ticket, finding related code</span>
+                  <span>Discover edge cases mid-implementation</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-error mt-1">✗</span>
-                  <span>Switch branches manually, lose your place</span>
+                  <span>Scramble to find context across the codebase</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-error mt-1">✗</span>
-                  <span>Write boilerplate tests and docs</span>
+                  <span>Forget dependencies until review time</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-error mt-1">✗</span>
-                  <span>Wait for one PR before starting the next</span>
+                  <span>Grind through boilerplate instead of deciding</span>
                 </li>
               </ul>
             </div>
@@ -319,19 +319,19 @@ function App() {
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
                   <span className="text-success mt-1">✓</span>
-                  <span>AI gathers context in seconds, not minutes</span>
+                  <span>Risks and edge cases surfaced upfront</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-success mt-1">✓</span>
-                  <span>Isolated worktrees—no branch conflicts ever</span>
+                  <span>Full context gathered in seconds, not hours</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-success mt-1">✓</span>
-                  <span>Auto-generated tests and documentation</span>
+                  <span>Dependencies mapped before you write a line</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-success mt-1">✓</span>
-                  <span>Run 5 tickets in parallel, review when ready</span>
+                  <span>You decide, AI executes—5 tickets in parallel</span>
                 </li>
               </ul>
             </div>
@@ -343,9 +343,9 @@ function App() {
       <section className="pt-12 pb-20 px-6">
         <div className="max-w-6xl mx-auto">
           <p className="section-label text-primary-dark/60 mb-4">/ KEY FEATURES</p>
-          <h2 className="text-h2 mb-4">Built for real development workflows</h2>
+          <h2 className="text-h2 mb-4">Ship with confidence, not anxiety</h2>
           <p className="text-lg text-text-muted mb-12 max-w-2xl">
-            BiAgent provides the tools you need to scale your development process with AI-powered automation.
+            Tools that help you understand the full picture before committing to a path.
           </p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -432,9 +432,9 @@ function App() {
       <section id="waitlist" className="py-20 pb-32 px-6 bg-primary scroll-mt-20 min-h-[calc(100vh-80px)]">
         <div className="max-w-2xl mx-auto text-center">
           <p className="section-label text-primary-dark/60 mb-4">/ JOIN THE WAITLIST</p>
-          <h2 className="text-h2 mb-4">Get early access</h2>
+          <h2 className="text-h2 mb-4">Ship smarter, not harder</h2>
           <p className="text-lg text-text-body mb-8">
-            Be among the first to try BiAgent. Early adopters get founder pricing and direct support.
+            Join the waitlist. Early adopters get founder pricing and direct support.
           </p>
 
           {isSubmitted ? (
