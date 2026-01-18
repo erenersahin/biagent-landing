@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Logo } from './components/Logo'
 
 // SVG Icon Components
@@ -169,12 +169,12 @@ function App() {
   }
 
   // Animate through pipeline steps
-  useState(() => {
+  useEffect(() => {
     const interval = setInterval(() => {
       setActiveStep(prev => (prev % 8) + 1)
     }, 2000)
     return () => clearInterval(interval)
-  })
+  }, [])
 
   return (
     <div className="min-h-screen bg-bg-page">
