@@ -4,6 +4,34 @@ export default {
   theme: {
     extend: {
       colors: {
+        /* Base Colors */
+        white: '#FFFFFF',
+        black: '#202020',
+        'black-light': '#333333',
+        'black-lighter': '#4A4A4A',
+
+        /* Yellow Palette */
+        yellow: {
+          DEFAULT: '#F0FB29',
+          light: '#F5FC6A',
+          dark: '#D4E020',
+          muted: '#E8F299',
+        },
+
+        /* Gray Palette */
+        gray: {
+          50: '#FAFAFA',
+          100: '#F5F5F5',
+          200: '#EEEEEE',
+          300: '#DDDDDD',
+          400: '#C8C8C8',
+          500: '#9CA3AF',
+          600: '#6B7280',
+          700: '#4B5563',
+          800: '#374151',
+        },
+
+        /* Semantic Colors (legacy support) */
         primary: '#F0FB29',
         'primary-dark': '#202020',
         secondary: '#AEE3FD',

@@ -6,27 +6,106 @@
    BiAgent Landing Page - Blacksmith Design System
    ============================================================ */
 
+/* ============================================================
+   COLOR PALETTE TEMPLATES
+   ============================================================ */
+
 :root {
-  /* Colors - Primary */
-  --color-primary: #F0FB29;
-  --color-primary-dark: #202020;
-  --color-secondary: #AEE3FD;
+  /* === BASE COLORS === */
+  --white: #FFFFFF;
+  --black: #202020;
+  --black-light: #333333;
+  --black-lighter: #4A4A4A;
 
-  /* Colors - Background */
-  --bg-page: #F5F5F5;
-  --bg-card: #FFFFFF;
-  --bg-card-accent: #F0FB29;
+  /* Yellow Palette */
+  --yellow: #F0FB29;
+  --yellow-light: #F5FC6A;
+  --yellow-dark: #D4E020;
+  --yellow-muted: #E8F299;
 
-  /* Colors - Text */
-  --text-heading: #202020;
-  --text-body: #333333;
-  --text-muted: #9CA3AF;
-  --text-on-primary: #202020;
-  --text-on-dark: #F0FB29;
+  /* Neutral Palette */
+  --gray-50: #FAFAFA;
+  --gray-100: #F5F5F5;
+  --gray-200: #EEEEEE;
+  --gray-300: #DDDDDD;
+  --gray-400: #C8C8C8;
+  --gray-500: #9CA3AF;
+  --gray-600: #6B7280;
+  --gray-700: #4B5563;
+  --gray-800: #374151;
 
-  /* Colors - Border */
-  --border-primary: #202020;
-  --border-light: #DDDDDD;
+  /* Accent Colors */
+  --secondary: #AEE3FD;
+  --success: #22C55E;
+  --error: #EF4444;
+}
+
+/* === THEME: WHITE (Light Background) === */
+.theme-white, :root {
+  --color-primary: var(--yellow);
+  --color-primary-dark: var(--black);
+
+  --bg-page: var(--gray-100);
+  --bg-card: var(--white);
+  --bg-card-accent: var(--yellow);
+
+  --text-heading: var(--black);
+  --text-body: var(--black-light);
+  --text-muted: var(--gray-500);
+  --text-on-primary: var(--black);
+  --text-on-dark: var(--yellow);
+
+  --border-primary: var(--black);
+  --border-light: var(--gray-300);
+
+  --dot-color: var(--gray-400);
+}
+
+/* === THEME: BLACK (Dark Background) === */
+.theme-black {
+  --color-primary: var(--yellow);
+  --color-primary-dark: var(--white);
+
+  --bg-page: var(--black);
+  --bg-card: var(--black-light);
+  --bg-card-accent: var(--yellow);
+
+  --text-heading: var(--white);
+  --text-body: var(--gray-300);
+  --text-muted: var(--gray-500);
+  --text-on-primary: var(--black);
+  --text-on-dark: var(--yellow);
+
+  --border-primary: var(--gray-600);
+  --border-light: var(--black-lighter);
+
+  --dot-color: var(--black-lighter);
+}
+
+/* === THEME: YELLOW (Yellow Background) === */
+.theme-yellow {
+  --color-primary: var(--black);
+  --color-primary-dark: var(--black);
+
+  --bg-page: var(--yellow);
+  --bg-card: var(--white);
+  --bg-card-accent: var(--yellow-light);
+
+  --text-heading: var(--black);
+  --text-body: var(--black-light);
+  --text-muted: var(--black-lighter);
+  --text-on-primary: var(--yellow);
+  --text-on-dark: var(--yellow);
+
+  --border-primary: var(--black);
+  --border-light: var(--yellow-dark);
+
+  --dot-color: var(--yellow-dark);
+}
+
+/* Legacy variable mapping */
+:root {
+  --color-secondary: var(--secondary);
 
   /* Spacing */
   --space-xs: 4px;
@@ -233,7 +312,7 @@ body {
 
 /* Dot Grid Background */
 .dot-grid {
-  background-image: radial-gradient(circle, #C8C8C8 1px, transparent 1px);
+  background-image: radial-gradient(circle, var(--dot-color) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
@@ -274,10 +353,10 @@ body {
   outline-offset: 2px;
 }
 
-/* Selection */
+/* Selection - using secondary blue for visibility on all backgrounds */
 ::selection {
-  background-color: var(--color-primary);
-  color: var(--text-heading);
+  background-color: var(--secondary);
+  color: var(--black);
 }
 
 /* Fade In Animation */
@@ -305,3 +384,835 @@ body {
 .animate-fade-in > *:nth-child(2) { animation-delay: 150ms; }
 .animate-fade-in > *:nth-child(3) { animation-delay: 300ms; }
 .animate-fade-in > *:nth-child(4) { animation-delay: 450ms; }
+
+/* ============================================================
+   3D CUBE ANIMATIONS - ALL VARIANTS
+   ============================================================ */
+
+/* ===========================================
+   OPTION A: Isometric Cube Grid
+   =========================================== */
+.isometric-grid {
+  animation: isoPulse 4s ease-in-out infinite;
+}
+
+.iso-cube {
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+
+.iso-cube:hover {
+  opacity: 1;
+}
+
+@keyframes isoPulse {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* ===========================================
+   OPTION B: Wireframe Cube
+   =========================================== */
+.wireframe-scene {
+  width: 200px;
+  height: 200px;
+  perspective: 800px;
+}
+
+.wireframe-cube {
+  width: 160px;
+  height: 160px;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: wireframeRotate 15s linear infinite;
+  margin: 20px;
+}
+
+.wireframe-face {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  border: 3px solid var(--black);
+  background: transparent;
+  box-sizing: border-box;
+}
+
+.wireframe-face.front  { transform: translateZ(80px); }
+.wireframe-face.back   { transform: translateZ(-80px); }
+.wireframe-face.left   { transform: rotateY(-90deg) translateZ(80px); }
+.wireframe-face.right  { transform: rotateY(90deg) translateZ(80px); }
+.wireframe-face.top    { transform: rotateX(90deg) translateZ(80px); }
+.wireframe-face.bottom { transform: rotateX(-90deg) translateZ(80px); }
+
+@keyframes wireframeRotate {
+  0%   { transform: rotateX(-20deg) rotateY(0deg); }
+  100% { transform: rotateX(-20deg) rotateY(360deg); }
+}
+
+/* ===========================================
+   OPTION C: Solid Grid Cube
+   =========================================== */
+.solid-cube-scene {
+  width: 220px;
+  height: 220px;
+  perspective: 800px;
+}
+
+.solid-cube {
+  width: 160px;
+  height: 160px;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: solidRotate 20s linear infinite;
+  margin: 30px;
+}
+
+.solid-face {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 2px;
+  padding: 2px;
+  background: var(--black);
+  box-sizing: border-box;
+}
+
+.solid-face.front  { transform: translateZ(80px); }
+.solid-face.back   { transform: rotateY(180deg) translateZ(80px); }
+.solid-face.left   { transform: rotateY(-90deg) translateZ(80px); }
+.solid-face.right  { transform: rotateY(90deg) translateZ(80px); }
+.solid-face.top    { transform: rotateX(90deg) translateZ(80px); }
+.solid-face.bottom { transform: rotateX(-90deg) translateZ(80px); }
+
+.grid-cell {
+  background: var(--yellow);
+  border: 1px solid var(--black);
+}
+
+@keyframes solidRotate {
+  0%   { transform: rotateX(-15deg) rotateY(0deg); }
+  100% { transform: rotateX(-15deg) rotateY(360deg); }
+}
+
+/* ===========================================
+   OPTION D: Layered Square Stack
+   =========================================== */
+.stack-scene {
+  width: 200px;
+  height: 200px;
+  perspective: 600px;
+}
+
+.stack-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: stackFloat 6s ease-in-out infinite;
+}
+
+.stack-layer {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  left: 50%;
+  top: 50%;
+  background: var(--black);
+  border: 2px solid var(--yellow-dark);
+  transform:
+    translate(-50%, -50%)
+    translateZ(calc(var(--layer-index) * 12px - 48px))
+    rotateX(-20deg)
+    rotateY(calc(var(--layer-index) * 5deg));
+  opacity: calc(0.4 + (var(--layer-index) / var(--total-layers)) * 0.6);
+}
+
+@keyframes stackFloat {
+  0%, 100% {
+    transform: rotateX(-10deg) rotateY(0deg);
+  }
+  50% {
+    transform: rotateX(-10deg) rotateY(15deg) translateY(-10px);
+  }
+}
+
+/* ===========================================
+   Reduced Motion - All Variants
+   =========================================== */
+@media (prefers-reduced-motion: reduce) {
+  .isometric-grid,
+  .wireframe-cube,
+  .solid-cube,
+  .stack-container {
+    animation: none;
+  }
+
+  .wireframe-cube { transform: rotateX(-20deg) rotateY(-30deg); }
+  .solid-cube { transform: rotateX(-15deg) rotateY(-30deg); }
+  .stack-container { transform: rotateX(-10deg) rotateY(10deg); }
+}
+
+/* Logo Animation */
+/* Sequential Build: Yellow dots with yellow line on black box (dot1 -> line -> dot2 -> hold -> fade -> loop) */
+/* Total duration: ~5s */
+
+.logo-animation {
+  overflow: visible;
+}
+
+/* First dot: fade in + scale up (0s - 0.6s) */
+.logo-dot-1 {
+  transform-origin: 36px 80px;
+  animation: logoDot1Anim 5s ease-in-out infinite;
+}
+
+@keyframes logoDot1Anim {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  6% { /* 0.3s */
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  12% { /* 0.6s */
+    opacity: 1;
+    transform: scale(1);
+  }
+  /* Hold until fade out */
+  75% { /* 3.75s */
+    opacity: 1;
+    transform: scale(1);
+  }
+  90% { /* 4.5s - fade out */
+    opacity: 0;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+
+/* Line: draws from left to right (0.5s - 1.5s) */
+.logo-line {
+  stroke-dasharray: 64;
+  stroke-dashoffset: 64;
+  animation: logoLineAnim 5s ease-in-out infinite;
+}
+
+@keyframes logoLineAnim {
+  0%, 10% { /* 0s - 0.5s */
+    stroke-dashoffset: 64;
+    opacity: 1;
+  }
+  30% { /* 1.5s - line fully drawn */
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  /* Hold */
+  75% { /* 3.75s */
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  90% { /* 4.5s - fade out */
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+  100% {
+    stroke-dashoffset: 64;
+    opacity: 0;
+  }
+}
+
+/* Second dot: appears at end of line (1.4s - 2.0s) */
+.logo-dot-2 {
+  transform-origin: 124px 80px;
+  animation: logoDot2Anim 5s ease-in-out infinite;
+}
+
+@keyframes logoDot2Anim {
+  0%, 28% { /* 0s - 1.4s */
+    opacity: 0;
+    transform: scale(0);
+  }
+  34% { /* 1.7s */
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  40% { /* 2.0s */
+    opacity: 1;
+    transform: scale(1);
+  }
+  /* Hold until fade out */
+  75% { /* 3.75s */
+    opacity: 1;
+    transform: scale(1);
+  }
+  90% { /* 4.5s - fade out */
+    opacity: 0;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+
+/* Reduced motion support for Logo Animation Option 1 */
+@media (prefers-reduced-motion: reduce) {
+  .logo-dot-1,
+  .logo-dot-2,
+  .logo-line {
+    animation: none;
+  }
+
+  .logo-dot-1,
+  .logo-dot-2 {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .logo-line {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+/* Logo Animation Option 2 */
+/* Connection Story: Two dots appear separately, connect with line, glow pulse, drift apart, loop */
+/* Total duration: ~5s */
+
+.logo-animation-option2 {
+  overflow: visible;
+}
+
+/*
+  Animation Timeline (5s total):
+  0.0s - 0.5s: Dot 1 appears (fade in + scale)
+  0.4s - 0.9s: Dot 2 appears (fade in + scale)
+  0.8s - 1.8s: Line draws from left to right
+  1.8s - 2.5s: Glow pulse (energy flowing effect)
+  2.5s - 3.5s: Connected state holds
+  3.5s - 4.3s: Dots drift apart, line fades
+  4.3s - 5.0s: Everything fades out, reset
+*/
+
+/* Left dot: appears first with fade + scale */
+.opt2-dot-left {
+  fill: var(--black, #202020);
+  transform-origin: 40px 30px;
+  animation: opt2DotLeftAnim 5s ease-in-out infinite;
+}
+
+@keyframes opt2DotLeftAnim {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  5% { /* 0.25s - mid pop */
+    opacity: 1;
+    transform: scale(1.15);
+  }
+  10% { /* 0.5s - settled */
+    opacity: 1;
+    transform: scale(1);
+  }
+  /* Hold connected position */
+  70% { /* 3.5s - start drifting */
+    opacity: 1;
+    transform: scale(1) translateX(0);
+  }
+  80% { /* 4.0s - drifted left */
+    opacity: 0.7;
+    transform: scale(1) translateX(-8px);
+  }
+  86% { /* 4.3s - fade out */
+    opacity: 0;
+    transform: scale(0.8) translateX(-12px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+
+/* Right dot: appears second with fade + scale */
+.opt2-dot-right {
+  fill: var(--black, #202020);
+  transform-origin: 160px 30px;
+  animation: opt2DotRightAnim 5s ease-in-out infinite;
+}
+
+@keyframes opt2DotRightAnim {
+  0%, 8% { /* 0s - 0.4s delay */
+    opacity: 0;
+    transform: scale(0);
+  }
+  13% { /* 0.65s - mid pop */
+    opacity: 1;
+    transform: scale(1.15);
+  }
+  18% { /* 0.9s - settled */
+    opacity: 1;
+    transform: scale(1);
+  }
+  /* Hold connected position */
+  70% { /* 3.5s - start drifting */
+    opacity: 1;
+    transform: scale(1) translateX(0);
+  }
+  80% { /* 4.0s - drifted right */
+    opacity: 0.7;
+    transform: scale(1) translateX(8px);
+  }
+  86% { /* 4.3s - fade out */
+    opacity: 0;
+    transform: scale(0.8) translateX(12px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+
+/* Connection line: draws from left dot to right dot */
+.opt2-connection-line {
+  stroke: var(--black, #202020);
+  stroke-dasharray: 120;
+  stroke-dashoffset: 120;
+  animation: opt2LineDrawAnim 5s ease-in-out infinite;
+}
+
+@keyframes opt2LineDrawAnim {
+  0%, 16% { /* 0s - 0.8s wait for dots */
+    stroke-dashoffset: 120;
+    opacity: 1;
+  }
+  36% { /* 1.8s - line fully drawn */
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  /* Hold connected */
+  70% { /* 3.5s - start fading */
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  80% { /* 4.0s - fading */
+    stroke-dashoffset: 0;
+    opacity: 0.3;
+  }
+  86% { /* 4.3s - gone */
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+  100% {
+    stroke-dashoffset: 120;
+    opacity: 0;
+  }
+}
+
+/* Glow line: energy pulse when connected */
+.opt2-connection-line-glow {
+  stroke: var(--yellow, #F0FB29);
+  stroke-dasharray: 120;
+  stroke-dashoffset: 120;
+  opacity: 0;
+  animation: opt2LineGlowAnim 5s ease-in-out infinite;
+}
+
+@keyframes opt2LineGlowAnim {
+  0%, 36% { /* 0s - 1.8s wait for line to draw */
+    stroke-dashoffset: 120;
+    opacity: 0;
+  }
+  40% { /* 2.0s - glow starts */
+    stroke-dashoffset: 0;
+    opacity: 0.8;
+  }
+  50% { /* 2.5s - glow peak */
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  60% { /* 3.0s - glow settles */
+    stroke-dashoffset: 0;
+    opacity: 0.6;
+  }
+  70% { /* 3.5s - start fading */
+    stroke-dashoffset: 0;
+    opacity: 0.4;
+  }
+  80% { /* 4.0s - faded */
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+  100% {
+    stroke-dashoffset: 120;
+    opacity: 0;
+  }
+}
+
+/* Left dot glow: pulses when connected */
+.opt2-dot-left-glow {
+  fill: var(--yellow, #F0FB29);
+  transform-origin: 40px 30px;
+  opacity: 0;
+  animation: opt2DotLeftGlowAnim 5s ease-in-out infinite;
+}
+
+@keyframes opt2DotLeftGlowAnim {
+  0%, 36% { /* Wait for connection */
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  42% { /* 2.1s - glow pulse up */
+    opacity: 0.7;
+    transform: scale(1.3);
+  }
+  50% { /* 2.5s - glow peak */
+    opacity: 0.5;
+    transform: scale(1.1);
+  }
+  60% { /* 3.0s - subtle glow */
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  70% { /* 3.5s - fading with drift */
+    opacity: 0.2;
+    transform: scale(1) translateX(0);
+  }
+  80% { /* 4.0s - fading and drifting */
+    opacity: 0;
+    transform: scale(0.9) translateX(-8px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+/* Right dot glow: pulses when connected */
+.opt2-dot-right-glow {
+  fill: var(--yellow, #F0FB29);
+  transform-origin: 160px 30px;
+  opacity: 0;
+  animation: opt2DotRightGlowAnim 5s ease-in-out infinite;
+}
+
+@keyframes opt2DotRightGlowAnim {
+  0%, 36% { /* Wait for connection */
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  42% { /* 2.1s - glow pulse up */
+    opacity: 0.7;
+    transform: scale(1.3);
+  }
+  50% { /* 2.5s - glow peak */
+    opacity: 0.5;
+    transform: scale(1.1);
+  }
+  60% { /* 3.0s - subtle glow */
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  70% { /* 3.5s - fading with drift */
+    opacity: 0.2;
+    transform: scale(1) translateX(0);
+  }
+  80% { /* 4.0s - fading and drifting */
+    opacity: 0;
+    transform: scale(0.9) translateX(8px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+/* Reduced motion support for Logo Animation Option 2 */
+@media (prefers-reduced-motion: reduce) {
+  .opt2-dot-left,
+  .opt2-dot-right,
+  .opt2-connection-line,
+  .opt2-connection-line-glow,
+  .opt2-dot-left-glow,
+  .opt2-dot-right-glow {
+    animation: none;
+  }
+
+  .opt2-dot-left,
+  .opt2-dot-right {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .opt2-connection-line {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+
+  .opt2-connection-line-glow,
+  .opt2-dot-left-glow,
+  .opt2-dot-right-glow {
+    opacity: 0;
+  }
+}
+
+/* Logo Animation Option 3 */
+/* Split & Connect: Blue dots with black line - matches highlight style */
+/* Total duration: ~5s */
+
+.logo-animation-option3 {
+  overflow: visible;
+}
+
+/* Left dot: starts center, moves left, then returns to center */
+.logo3-dot-left {
+  animation: logo3DotLeft 5s ease-in-out infinite;
+}
+
+@keyframes logo3DotLeft {
+  /* Phase 1: Single dot at center (0s - 0.5s) */
+  0% {
+    cx: 120;
+    opacity: 1;
+  }
+  10% { /* 0.5s - start splitting */
+    cx: 120;
+    opacity: 1;
+  }
+  /* Phase 2: Split apart (0.5s - 1.5s) */
+  30% { /* 1.5s - fully separated */
+    cx: 32;
+    opacity: 1;
+  }
+  /* Phase 3: Hold separated (1.5s - 3s) */
+  60% { /* 3s - still separated */
+    cx: 32;
+    opacity: 1;
+  }
+  /* Phase 4: Merge back (3s - 4s) */
+  80% { /* 4s - merged */
+    cx: 120;
+    opacity: 1;
+  }
+  /* Phase 5: Hold center (4s - 5s) */
+  100% {
+    cx: 120;
+    opacity: 1;
+  }
+}
+
+/* Right dot: starts hidden, appears during split, moves right, then merges back */
+.logo3-dot-right {
+  animation: logo3DotRight 5s ease-in-out infinite;
+}
+
+@keyframes logo3DotRight {
+  /* Phase 1: Hidden at center (0s - 0.5s) */
+  0% {
+    cx: 120;
+    opacity: 0;
+  }
+  10% { /* 0.5s - start appearing */
+    cx: 120;
+    opacity: 0;
+  }
+  15% { /* 0.75s - visible and splitting */
+    cx: 120;
+    opacity: 1;
+  }
+  /* Phase 2: Split apart (0.75s - 1.5s) */
+  30% { /* 1.5s - fully separated */
+    cx: 208;
+    opacity: 1;
+  }
+  /* Phase 3: Hold separated (1.5s - 3s) */
+  60% { /* 3s - still separated */
+    cx: 208;
+    opacity: 1;
+  }
+  /* Phase 4: Merge back (3s - 4s) */
+  75% { /* 3.75s */
+    cx: 150;
+    opacity: 1;
+  }
+  80% { /* 4s - merged and disappearing */
+    cx: 120;
+    opacity: 0;
+  }
+  /* Phase 5: Hidden at center (4s - 5s) */
+  100% {
+    cx: 120;
+    opacity: 0;
+  }
+}
+
+/* Connecting line: appears during split, grows from center outward */
+.logo3-line {
+  animation: logo3Line 5s ease-in-out infinite;
+}
+
+@keyframes logo3Line {
+  /* Phase 1: No line (0s - 0.6s) */
+  0% {
+    x1: 120;
+    x2: 120;
+    opacity: 0;
+  }
+  12% { /* 0.6s - start appearing */
+    x1: 120;
+    x2: 120;
+    opacity: 0;
+  }
+  /* Phase 2: Line grows with dots (0.6s - 1.5s) */
+  20% { /* 1s */
+    x1: 80;
+    x2: 160;
+    opacity: 1;
+  }
+  30% { /* 1.5s - fully extended */
+    x1: 48;
+    x2: 192;
+    opacity: 1;
+  }
+  /* Phase 3: Hold extended (1.5s - 3s) */
+  60% { /* 3s */
+    x1: 48;
+    x2: 192;
+    opacity: 1;
+  }
+  /* Phase 4: Line shrinks with dots (3s - 3.8s) */
+  70% { /* 3.5s */
+    x1: 80;
+    x2: 160;
+    opacity: 1;
+  }
+  76% { /* 3.8s - line collapsed */
+    x1: 120;
+    x2: 120;
+    opacity: 0;
+  }
+  /* Phase 5: No line (3.8s - 5s) */
+  100% {
+    x1: 120;
+    x2: 120;
+    opacity: 0;
+  }
+}
+
+/* Left glow: pulse when fully formed */
+.logo3-glow-left {
+  animation: logo3GlowLeft 5s ease-in-out infinite;
+}
+
+@keyframes logo3GlowLeft {
+  0%, 32% { /* 0s - 1.6s */
+    cx: 120;
+    opacity: 0;
+    r: 16;
+  }
+  /* Pulse at full formation */
+  35% { /* 1.75s - glow appears at left position */
+    cx: 32;
+    opacity: 0;
+    r: 16;
+  }
+  42% { /* 2.1s - glow peak */
+    cx: 32;
+    opacity: 0.6;
+    r: 22;
+  }
+  50% { /* 2.5s - glow fades */
+    cx: 32;
+    opacity: 0;
+    r: 28;
+  }
+  /* Hold during merge */
+  60% {
+    cx: 32;
+    opacity: 0;
+    r: 16;
+  }
+  100% {
+    cx: 120;
+    opacity: 0;
+    r: 16;
+  }
+}
+
+/* Right glow: pulse when fully formed */
+.logo3-glow-right {
+  animation: logo3GlowRight 5s ease-in-out infinite;
+}
+
+@keyframes logo3GlowRight {
+  0%, 32% { /* 0s - 1.6s */
+    cx: 120;
+    opacity: 0;
+    r: 16;
+  }
+  /* Pulse at full formation */
+  35% { /* 1.75s - glow appears at right position */
+    cx: 208;
+    opacity: 0;
+    r: 16;
+  }
+  42% { /* 2.1s - glow peak */
+    cx: 208;
+    opacity: 0.6;
+    r: 22;
+  }
+  50% { /* 2.5s - glow fades */
+    cx: 208;
+    opacity: 0;
+    r: 28;
+  }
+  /* Hold during merge */
+  60% {
+    cx: 208;
+    opacity: 0;
+    r: 16;
+  }
+  100% {
+    cx: 120;
+    opacity: 0;
+    r: 16;
+  }
+}
+
+/* Reduced motion support for Logo Animation Option 3 */
+@media (prefers-reduced-motion: reduce) {
+  .logo3-dot-left,
+  .logo3-dot-right,
+  .logo3-line,
+  .logo3-glow-left,
+  .logo3-glow-right {
+    animation: none;
+  }
+
+  .logo3-dot-left {
+    cx: 32;
+    opacity: 1;
+  }
+
+  .logo3-dot-right {
+    cx: 208;
+    opacity: 1;
+  }
+
+  .logo3-line {
+    x1: 48;
+    x2: 192;
+    opacity: 1;
+  }
+
+  .logo3-glow-left,
+  .logo3-glow-right {
+    opacity: 0;
+  }
+}
