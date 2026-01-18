@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BiAgent Logo Selection</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'IBM Plex Sans', -apple-system, sans-serif;
+      background: #F5F5F5;
+      padding: 40px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 500;
+      color: #202020;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: #666;
+      margin-bottom: 40px;
+      font-size: 16px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      max-width: 1200px;
+    }
+
+    .card {
+      background: white;
+      border: 2px solid #202020;
+      border-radius: 16px;
+      padding: 32px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    }
+
+    .card.selected {
+      border-color: #F0FB29;
+      background: #FFFEF0;
+    }
+
+    .logo-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .logo-sizes {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .logo-name {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 14px;
+      font-weight: 500;
+      color: #202020;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .logo-desc {
+      color: #666;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .preview-section {
+      margin-top: 48px;
+      padding: 32px;
+      background: white;
+      border: 2px solid #202020;
+      border-radius: 16px;
+      max-width: 600px;
+    }
+
+    .preview-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 24px;
+      background: #F5F5F5;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+
+    .preview-header span {
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 500;
+      color: #202020;
+      letter-spacing: 0.5px;
+    }
+
+    .selected-name {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: #999;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>BiAgent Logo Selection</h1>
+  <p class="subtitle">Bidirectional communication between Human and AI</p>
+
+  <div class="grid">
+    <!-- Logo 1: Dual Arrows -->
+    <div class="card" onclick="selectLogo('dual-arrows', this)">
+      <div class="logo-row">
+        <div class="logo-sizes">
+          <svg width="48" height="48" viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="6" fill="#202020"/>
+            <path d="M8 16L12 12V14.5H15V17.5H12V20L8 16Z" fill="#F0FB29"/>
+            <path d="M24 16L20 12V14.5H17V17.5H20V20L24 16Z" fill="#F0FB29"/>
+          </svg>
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="6" fill="#202020"/>
+            <path d="M8 16L12 12V14.5H15V17.5H12V20L8 16Z" fill="#F0FB29"/>
+            <path d="M24 16L20 12V14.5H17V17.5H20V20L24 16Z" fill="#F0FB29"/>
+          </svg>
+          <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="6" fill="#202020"/>
+            <path d="M8 16L12 12V14.5H15V17.5H12V20L8 16Z" fill="#F0FB29"/>
+            <path d="M24 16L20 12V14.5H17V17.5H20V20L24 16Z" fill="#F0FB29"/>
+          </svg>
+        </div>
+      </div>
+      <p class="logo-name">Dual Arrows</p>
+      <p class="logo-desc">Two arrows facing each other. Direct representation of bidirectional flow.</p>
+    </div>
+
+    <!-- Logo 2: Connected Dots (Selected) -->
+    <div class="card selected" onclick="selectLogo('connected-dots', this)">
+      <div class="logo-row">
+        <div class="logo-sizes">
+          <svg width="48" height="48" viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="6" fill="#202020"/>
+            <circle cx="10" cy="16" r="4" fill="#F0FB29"/>
+            <circle cx="22" cy="16" r="4" fill="#F0FB29"/>
+            <rect x="14" y="15" width="4" height="2" fill="#F0FB29"/>
+          </svg>
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="6" fill="#202020"/>
+            <circle cx="10" cy="16" r="4" fill="#F0FB29"/>
+            <circle cx="22" cy="16" r="4" fill="#F0FB29"/>
+            <rect x="14" y="15" width="4" height="2" fill="#F0FB29"/>
+          </svg>
+          <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="6" fill="#202020"/>
+            <circle cx="10" cy="16" r="4" fill="#F0FB29"/>
+            <circle cx="22" cy="16" r="4" fill="#F0FB29"/>
+            <rect x="14" y="15" width="4" height="2" fill="#F0FB29"/>
+          </svg>
+        </div>
+      </div>
+      <p class="logo-name">Connected Dots</p>
+      <p class="logo-desc">Human and AI as two entities connected by a bridge. Simple and abstract.</p>
+    </div>
+
+    <!-- Logo 3: Flow B -->
+    <div class="card" onclick="selectLogo('flow-b', this)">
+      <div class="logo-row">
+        <div class="logo-sizes">
+          <svg width="48" height="48" viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="6" fill="#202020"/>
+            <path d="M11 8H17C19.5 8 21 9.5 21 12C21 13.5 20 14.5 19 15C20.5 15.5 22 17 22 19.5C22 22.5 19.5 24 17 24H11V8Z" stroke="#F0FB29" stroke-width="2" fill="none"/>
+            <path d="M17 12H14" stroke="#F0FB29" stroke-width="2"/>
+            <path d="M17 20H14" stroke="#F0FB29" stroke-width="2"/>
+          </svg>
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="6" fill="#202020"/>
+            <path d="M11 8H17C19.5 8 21 9.5 21 12C21 13.5 20 14.5 19 15C20.5 15.5 22 17 22 19.5C22 22.5 19.5 24 17 24H11V8Z" stroke="#F0FB29" stroke-width="2" fill="none"/>
+            <path d="M17 12H14" stroke="#F0FB29" stroke-width="2"/>
+            <path d="M17 20H14" stroke="#F0FB29" stroke-width="2"/>
+          </svg>
+          <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="6" fill="#202020"/>
+            <path d="M11 8H17C19.5 8 21 9.5 21 12C21 13.5 20 14.5 19 15C20.5 15.5 22 17 22 19.5C22 22.5 19.5 24 17 24H11V8Z" stroke="#F0FB29" stroke-width="2" fill="none"/>
+            <path d="M17 12H14" stroke="#F0FB29" stroke-width="2"/>
+            <path d="M17 20H14" stroke="#F0FB29" stroke-width="2"/>
+          </svg>
+        </div>
+      </div>
+      <p class="logo-name">Flow B</p>
+      <p class="logo-desc">Letter B with flowing lines suggesting continuous exchange.</p>
+    </div>
+
+    <!-- Logo 4: Bracket B -->
+    <div class="card" onclick="selectLogo('bracket-b', this)">
+      <div class="logo-row">
+        <div class="logo-sizes">
+          <svg width="48" height="48" viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="6" fill="#202020"/>
+            <path d="M9 10V22H12V19H10V13H12V10H9Z" fill="#F0FB29"/>
+            <path d="M23 10V22H20V19H22V13H20V10H23Z" fill="#F0FB29"/>
+            <circle cx="16" cy="16" r="2.5" fill="#F0FB29"/>
+          </svg>
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="6" fill="#202020"/>
+            <path d="M9 10V22H12V19H10V13H12V10H9Z" fill="#F0FB29"/>
+            <path d="M23 10V22H20V19H22V13H20V10H23Z" fill="#F0FB29"/>
+            <circle cx="16" cy="16" r="2.5" fill="#F0FB29"/>
+          </svg>
+          <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="6" fill="#202020"/>
+            <path d="M9 10V22H12V19H10V13H12V10H9Z" fill="#F0FB29"/>
+            <path d="M23 10V22H20V19H22V13H20V10H23Z" fill="#F0FB29"/>
+            <circle cx="16" cy="16" r="2.5" fill="#F0FB29"/>
+          </svg>
+        </div>
+      </div>
+      <p class="logo-name">Bracket B</p>
+      <p class="logo-desc">Opposing brackets with center dot. Code/terminal aesthetic, suggests I/O.</p>
+    </div>
+
+    <!-- Logo 5: Minimal Arrows -->
+    <div class="card" onclick="selectLogo('minimal-arrows', this)">
+      <div class="logo-row">
+        <div class="logo-sizes">
+          <svg width="48" height="48" viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="6" fill="#202020"/>
+            <path d="M10 16L15 11V14H17V18H15V21L10 16Z" fill="#F0FB29"/>
+            <path d="M22 16L17 11V14H15V18H17V21L22 16Z" fill="none" stroke="#F0FB29" stroke-width="1.5"/>
+          </svg>
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="6" fill="#202020"/>
+            <path d="M10 16L15 11V14H17V18H15V21L10 16Z" fill="#F0FB29"/>
+            <path d="M22 16L17 11V14H15V18H17V21L22 16Z" fill="none" stroke="#F0FB29" stroke-width="1.5"/>
+          </svg>
+          <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="6" fill="#202020"/>
+            <path d="M10 16L15 11V14H17V18H15V21L10 16Z" fill="#F0FB29"/>
+            <path d="M22 16L17 11V14H15V18H17V21L22 16Z" fill="none" stroke="#F0FB29" stroke-width="1.5"/>
+          </svg>
+        </div>
+      </div>
+      <p class="logo-name">Minimal Arrows</p>
+      <p class="logo-desc">Overlapping arrows, one filled one outlined. Shows duality.</p>
+    </div>
+
+    <!-- Logo 6: Exchange -->
+    <div class="card" onclick="selectLogo('exchange', this)">
+      <div class="logo-row">
+        <div class="logo-sizes">
+          <svg width="48" height="48" viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="6" fill="#202020"/>
+            <path d="M10 10L16 16L10 22" stroke="#F0FB29" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <path d="M22 10L16 16L22 22" stroke="#F0FB29" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="6" fill="#202020"/>
+            <path d="M10 10L16 16L10 22" stroke="#F0FB29" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <path d="M22 10L16 16L22 22" stroke="#F0FB29" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="6" fill="#202020"/>
+            <path d="M10 10L16 16L10 22" stroke="#F0FB29" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <path d="M22 10L16 16L22 22" stroke="#F0FB29" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </div>
+      </div>
+      <p class="logo-name">Exchange</p>
+      <p class="logo-desc">Two chevrons meeting at center. Super clean, immediately reads as "exchange".</p>
+    </div>
+
+    <!-- Logo 7: Connected B -->
+    <div class="card" onclick="selectLogo('connected-b', this)">
+      <div class="logo-row">
+        <div class="logo-sizes">
+          <svg width="48" height="48" viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="6" fill="#202020"/>
+            <rect x="10" y="7" width="2.5" height="18" fill="#F0FB29"/>
+            <path d="M12.5 7H17C19.5 7 21 8.5 21 11C21 13.5 19.5 15 17 15H12.5" stroke="#F0FB29" stroke-width="2.5" fill="none"/>
+            <path d="M12.5 15H18C20.5 15 22 17 22 19.5C22 22 20.5 25 18 25H12.5" stroke="#F0FB29" stroke-width="2.5" fill="none"/>
+            <circle cx="16.5" cy="11" r="2" fill="#F0FB29"/>
+            <circle cx="17" cy="20" r="2" fill="#F0FB29"/>
+          </svg>
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="6" fill="#202020"/>
+            <rect x="10" y="7" width="2.5" height="18" fill="#F0FB29"/>
+            <path d="M12.5 7H17C19.5 7 21 8.5 21 11C21 13.5 19.5 15 17 15H12.5" stroke="#F0FB29" stroke-width="2.5" fill="none"/>
+            <path d="M12.5 15H18C20.5 15 22 17 22 19.5C22 22 20.5 25 18 25H12.5" stroke="#F0FB29" stroke-width="2.5" fill="none"/>
+            <circle cx="16.5" cy="11" r="2" fill="#F0FB29"/>
+            <circle cx="17" cy="20" r="2" fill="#F0FB29"/>
+          </svg>
+          <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="6" fill="#202020"/>
+            <rect x="10" y="7" width="2.5" height="18" fill="#F0FB29"/>
+            <path d="M12.5 7H17C19.5 7 21 8.5 21 11C21 13.5 19.5 15 17 15H12.5" stroke="#F0FB29" stroke-width="2.5" fill="none"/>
+            <path d="M12.5 15H18C20.5 15 22 17 22 19.5C22 22 20.5 25 18 25H12.5" stroke="#F0FB29" stroke-width="2.5" fill="none"/>
+            <circle cx="16.5" cy="11" r="2" fill="#F0FB29"/>
+            <circle cx="17" cy="20" r="2" fill="#F0FB29"/>
+          </svg>
+        </div>
+      </div>
+      <p class="logo-name">Connected B (Selected)</p>
+      <p class="logo-desc">Letter B with two dots inside its bumps, connected by vertical spine. Bi-directional + B for BiAgent.</p>
+    </div>
+  </div>
+
+  <div class="preview-section">
+    <p class="label">Preview in header</p>
+    <div class="preview-header">
+      <div id="preview-logo">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <rect width="32" height="32" rx="6" fill="#202020"/>
+          <circle cx="10" cy="16" r="4" fill="#F0FB29"/>
+          <circle cx="22" cy="16" r="4" fill="#F0FB29"/>
+          <rect x="14" y="15" width="4" height="2" fill="#F0FB29"/>
+        </svg>
+      </div>
+      <span>BIAGENT</span>
+    </div>
+    <p class="selected-name">Selected: <span id="selected-name">connected-dots</span></p>
+  </div>
+
+  <script>
+    const logos = {
+      'dual-arrows': `<svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <rect width="32" height="32" rx="6" fill="#202020"/>
+        <path d="M8 16L12 12V14.5H15V17.5H12V20L8 16Z" fill="#F0FB29"/>
+        <path d="M24 16L20 12V14.5H17V17.5H20V20L24 16Z" fill="#F0FB29"/>
+      </svg>`,
+      'connected-dots': `<svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <rect width="32" height="32" rx="6" fill="#202020"/>
+        <circle cx="10" cy="16" r="4" fill="#F0FB29"/>
+        <circle cx="22" cy="16" r="4" fill="#F0FB29"/>
+        <rect x="14" y="15" width="4" height="2" fill="#F0FB29"/>
+      </svg>`,
+      'flow-b': `<svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <rect width="32" height="32" rx="6" fill="#202020"/>
+        <path d="M11 8H17C19.5 8 21 9.5 21 12C21 13.5 20 14.5 19 15C20.5 15.5 22 17 22 19.5C22 22.5 19.5 24 17 24H11V8Z" stroke="#F0FB29" stroke-width="2" fill="none"/>
+        <path d="M17 12H14" stroke="#F0FB29" stroke-width="2"/>
+        <path d="M17 20H14" stroke="#F0FB29" stroke-width="2"/>
+      </svg>`,
+      'bracket-b': `<svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <rect width="32" height="32" rx="6" fill="#202020"/>
+        <path d="M9 10V22H12V19H10V13H12V10H9Z" fill="#F0FB29"/>
+        <path d="M23 10V22H20V19H22V13H20V10H23Z" fill="#F0FB29"/>
+        <circle cx="16" cy="16" r="2.5" fill="#F0FB29"/>
+      </svg>`,
+      'minimal-arrows': `<svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <rect width="32" height="32" rx="6" fill="#202020"/>
+        <path d="M10 16L15 11V14H17V18H15V21L10 16Z" fill="#F0FB29"/>
+        <path d="M22 16L17 11V14H15V18H17V21L22 16Z" fill="none" stroke="#F0FB29" stroke-width="1.5"/>
+      </svg>`,
+      'exchange': `<svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <rect width="32" height="32" rx="6" fill="#202020"/>
+        <path d="M10 10L16 16L10 22" stroke="#F0FB29" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M22 10L16 16L22 22" stroke="#F0FB29" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>`,
+      'connected-b': `<svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <rect width="32" height="32" rx="6" fill="#202020"/>
+        <rect x="10" y="7" width="2.5" height="18" fill="#F0FB29"/>
+        <path d="M12.5 7H17C19.5 7 21 8.5 21 11C21 13.5 19.5 15 17 15H12.5" stroke="#F0FB29" stroke-width="2.5" fill="none"/>
+        <path d="M12.5 15H18C20.5 15 22 17 22 19.5C22 22 20.5 25 18 25H12.5" stroke="#F0FB29" stroke-width="2.5" fill="none"/>
+        <circle cx="16.5" cy="11" r="2" fill="#F0FB29"/>
+        <circle cx="17" cy="20" r="2" fill="#F0FB29"/>
+      </svg>`
+    };
+
+    function selectLogo(name, element) {
+      // Remove selected from all cards
+      document.querySelectorAll('.card').forEach(card => card.classList.remove('selected'));
+      // Add selected to clicked card
+      element.classList.add('selected');
+      // Update preview
+      document.getElementById('preview-logo').innerHTML = logos[name];
+      document.getElementById('selected-name').textContent = name;
+    }
+  </script>
+</body>
+</html>
