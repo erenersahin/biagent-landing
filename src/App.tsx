@@ -68,16 +68,96 @@ const USE_CASES = [
   { id: 'refactoring', label: 'Refactoring' },
 ]
 
-// Pipeline steps for the visual
+// Pipeline steps for the visual with reasoning examples
 const PIPELINE_STEPS = [
-  { num: 1, name: 'Context', desc: 'Gathers ticket & codebase context' },
-  { num: 2, name: 'Risk', desc: 'Analyzes risks & dependencies' },
-  { num: 3, name: 'Plan', desc: 'Creates implementation plan' },
-  { num: 4, name: 'Code', desc: 'Implements changes' },
-  { num: 5, name: 'Test', desc: 'Writes & runs tests' },
-  { num: 6, name: 'Docs', desc: 'Updates documentation' },
-  { num: 7, name: 'PR', desc: 'Creates pull request' },
-  { num: 8, name: 'Review', desc: 'Responds to feedback' },
+  {
+    num: 1,
+    name: 'Context',
+    desc: 'Gathers ticket & codebase context',
+    reasoning: [
+      'Loading ticket PROJ-123 from JIRA...',
+      'Parsing ticket description and acceptance criteria',
+      'Scanning codebase for related files...',
+      'Found 12 files matching auth/* pattern',
+    ]
+  },
+  {
+    num: 2,
+    name: 'Risk',
+    desc: 'Analyzes risks & dependencies',
+    reasoning: [
+      'Analyzing dependencies in package.json...',
+      'Checking for breaking changes in auth module',
+      'Found potential risk: OAuth token expiry handling',
+      'Flagging 2 edge cases for review',
+    ]
+  },
+  {
+    num: 3,
+    name: 'Plan',
+    desc: 'Creates implementation plan',
+    reasoning: [
+      'Creating implementation plan...',
+      'Step 1: Add TokenRefreshService class',
+      'Step 2: Update AuthProvider with refresh logic',
+      'Step 3: Add error handling for expired tokens',
+    ]
+  },
+  {
+    num: 4,
+    name: 'Code',
+    desc: 'Implements changes',
+    reasoning: [
+      'Analyzing ticket PROJ-123...',
+      'Found 3 related files in src/auth/',
+      'Implementing OAuth2 refresh token logic',
+      'Writing TokenRefreshService.ts...',
+    ]
+  },
+  {
+    num: 5,
+    name: 'Test',
+    desc: 'Writes & runs tests',
+    reasoning: [
+      'Generating test cases for TokenRefreshService...',
+      'Writing unit tests: 8 test cases',
+      'Running pytest in isolated worktree...',
+      'All tests passing ✓',
+    ]
+  },
+  {
+    num: 6,
+    name: 'Docs',
+    desc: 'Updates documentation',
+    reasoning: [
+      'Scanning for documentation files...',
+      'Updating API.md with new endpoints',
+      'Adding JSDoc comments to public methods',
+      'Generating changelog entry...',
+    ]
+  },
+  {
+    num: 7,
+    name: 'PR',
+    desc: 'Creates pull request',
+    reasoning: [
+      'Preparing pull request...',
+      'Generating PR title and description',
+      'Adding test results to PR body',
+      'Creating PR: feat(auth): add token refresh',
+    ]
+  },
+  {
+    num: 8,
+    name: 'Review',
+    desc: 'Responds to feedback',
+    reasoning: [
+      'Monitoring PR #142 for reviews...',
+      'New comment from @reviewer on line 45',
+      'Analyzing feedback: "add error boundary"',
+      'Implementing suggested changes...',
+    ]
+  },
 ]
 
 // Features list with SVG icon components
@@ -226,7 +306,7 @@ function App() {
       </section>
 
       {/* Pipeline Visual */}
-      <section id="how-it-works" className="py-20 px-6 bg-white border-y-2 border-primary-dark scroll-mt-20">
+      <section id="how-it-works" className="py-20 px-6 bg-white border-y-2 border-primary-dark scroll-mt-16">
         <div className="max-w-6xl mx-auto">
           <p className="section-label text-primary-dark/60 mb-4">/ 8-STEP PIPELINE</p>
           <h2 className="text-h2 mb-4">From ticket to PR, automatically</h2>
@@ -261,20 +341,27 @@ function App() {
             ))}
           </div>
 
-          <div className="mt-12 p-6 bg-bg-page rounded-lg border-2 border-primary-dark">
+          <div className="mt-12 p-6 bg-bg-page rounded-lg border-2 border-primary-dark overflow-hidden">
             <div className="flex items-start gap-4">
-              <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
-                <span className="font-mono font-medium">4</span>
+              <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300">
+                <span className="font-mono font-medium">{activeStep}</span>
               </div>
               <div className="flex-1">
-                <p className="font-mono text-sm text-text-muted mb-2">// AGENT REASONING</p>
-                <div className="font-mono text-sm bg-white p-4 rounded border border-primary-dark/20">
-                  <p className="text-text-body">
-                    <span className="text-primary-dark">Analyzing ticket PROJ-123...</span><br />
-                    Found 3 related files in src/auth/<br />
-                    Implementing OAuth2 refresh token logic<br />
-                    <span className="animate-pulse">Writing TokenRefreshService.ts...</span>
-                  </p>
+                <p className="font-mono text-sm text-text-muted mb-2">
+                  // AGENT REASONING — <span className="text-primary-dark">{PIPELINE_STEPS[activeStep - 1]?.name.toUpperCase()}</span>
+                </p>
+                <div className="font-mono text-sm bg-white p-4 rounded border border-primary-dark/20 transition-all duration-500">
+                  <div key={activeStep} className="text-text-body space-y-1 animate-fade-in">
+                    {PIPELINE_STEPS[activeStep - 1]?.reasoning.map((line, idx) => (
+                      <p
+                        key={idx}
+                        className={idx === PIPELINE_STEPS[activeStep - 1].reasoning.length - 1 ? 'animate-pulse text-primary-dark' : ''}
+                        style={{ animationDelay: `${idx * 100}ms` }}
+                      >
+                        {line}
+                      </p>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
@@ -292,46 +379,82 @@ function App() {
           </p>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="card border-error/50 bg-error/5">
-              <p className="section-label text-error mb-4">/ WITHOUT BIAGENT</p>
+            <div className="card border-primary-dark/30 bg-white">
+              <p className="section-label text-primary-dark/60 mb-4">/ WITHOUT BIAGENT</p>
               <ul className="space-y-4">
-                <li className="flex items-start gap-3">
-                  <span className="text-error mt-1">✗</span>
+                <li className="flex items-center gap-3">
+                  <span className="w-6 h-6 rounded-full bg-white border border-primary-dark flex items-center justify-center flex-shrink-0">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#202020" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="18" y1="6" x2="6" y2="18" />
+                      <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                  </span>
                   <span>Discover edge cases mid-implementation</span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-error mt-1">✗</span>
+                <li className="flex items-center gap-3">
+                  <span className="w-6 h-6 rounded-full bg-white border border-primary-dark flex items-center justify-center flex-shrink-0">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#202020" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="18" y1="6" x2="6" y2="18" />
+                      <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                  </span>
                   <span>Scramble to find context across the codebase</span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-error mt-1">✗</span>
+                <li className="flex items-center gap-3">
+                  <span className="w-6 h-6 rounded-full bg-white border border-primary-dark flex items-center justify-center flex-shrink-0">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#202020" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="18" y1="6" x2="6" y2="18" />
+                      <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                  </span>
                   <span>Forget dependencies until review time</span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-error mt-1">✗</span>
+                <li className="flex items-center gap-3">
+                  <span className="w-6 h-6 rounded-full bg-white border border-primary-dark flex items-center justify-center flex-shrink-0">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#202020" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="18" y1="6" x2="6" y2="18" />
+                      <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                  </span>
                   <span>Grind through boilerplate instead of deciding</span>
                 </li>
               </ul>
             </div>
 
-            <div className="card border-success/50 bg-success/5">
-              <p className="section-label text-success mb-4">/ WITH BIAGENT</p>
+            <div className="card border-primary-dark/30 bg-white">
+              <p className="section-label text-primary-dark mb-4"><span className="bg-primary px-1">/ WITH BIAGENT</span></p>
               <ul className="space-y-4">
-                <li className="flex items-start gap-3">
-                  <span className="text-success mt-1">✓</span>
-                  <span>Risks and edge cases surfaced upfront</span>
+                <li className="flex items-center gap-3">
+                  <span className="w-6 h-6 rounded-full bg-white border border-primary-dark flex items-center justify-center flex-shrink-0">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#202020" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  </span>
+                  <span className="bg-primary px-1">Risks and edge cases surfaced upfront</span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-success mt-1">✓</span>
-                  <span>Full context gathered in seconds, not hours</span>
+                <li className="flex items-center gap-3">
+                  <span className="w-6 h-6 rounded-full bg-white border border-primary-dark flex items-center justify-center flex-shrink-0">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#202020" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  </span>
+                  <span className="bg-primary px-1">Full context gathered in seconds, not hours</span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-success mt-1">✓</span>
-                  <span>Dependencies mapped before you write a line</span>
+                <li className="flex items-center gap-3">
+                  <span className="w-6 h-6 rounded-full bg-white border border-primary-dark flex items-center justify-center flex-shrink-0">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#202020" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  </span>
+                  <span className="bg-primary px-1">Dependencies mapped before you write a line</span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-success mt-1">✓</span>
-                  <span>You decide, AI executes—5 tickets in parallel</span>
+                <li className="flex items-center gap-3">
+                  <span className="w-6 h-6 rounded-full bg-white border border-primary-dark flex items-center justify-center flex-shrink-0">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#202020" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  </span>
+                  <span className="bg-primary px-1">You decide, AI executes—5 tickets in parallel</span>
                 </li>
               </ul>
             </div>
@@ -429,7 +552,7 @@ function App() {
       </section>
 
       {/* Waitlist Form */}
-      <section id="waitlist" className="py-20 pb-32 px-6 bg-primary scroll-mt-20 min-h-[calc(100vh-80px)]">
+      <section id="waitlist" className="py-12 px-6 bg-primary scroll-mt-16">
         <div className="max-w-2xl mx-auto text-center">
           <p className="section-label text-primary-dark/60 mb-4">/ JOIN THE WAITLIST</p>
           <h2 className="text-h2 mb-4">Ship smarter, not harder</h2>
