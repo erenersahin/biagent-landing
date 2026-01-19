@@ -15,7 +15,7 @@ export function Pipeline() {
   return (
     <section id="how-it-works" className="py-20 px-6 bg-white border-y-2 border-primary-dark scroll-mt-16">
       <div className="max-w-6xl mx-auto">
-        <p className="section-label text-primary-dark/60 mb-4">// 8-STEP PIPELINE</p>
+        <p className="section-label text-primary-dark/60 mb-4">// PIPELINE</p>
         <h2 className="text-h2 mb-4">From ticket to PR, automatically</h2>
         <p className="text-lg text-text-muted mb-12 max-w-2xl">
           AI handles the grunt work. You make the calls. Watch agents surface edge cases and unknowns in real-time.
@@ -25,13 +25,12 @@ export function Pipeline() {
           {PIPELINE_STEPS.map((step) => (
             <div
               key={step.num}
-              className={`p-4 text-center transition-all rounded-xl border-2 ${
-                step.num === activeStep
-                  ? 'bg-white border-primary animate-pulse-glow'
-                  : step.num < activeStep
-                    ? 'bg-white border-success'
-                    : 'bg-white border-gray-300'
-              }`}
+              className={`p-4 text-center transition-all rounded-xl border-2 ${step.num === activeStep
+                ? 'bg-white border-primary animate-pulse-glow'
+                : step.num < activeStep
+                  ? 'bg-white border-success'
+                  : 'bg-white border-gray-300'
+                }`}
             >
               <p className="font-medium text-sm mb-1">{step.name}</p>
               <p className="text-xs text-text-muted hidden lg:block">{step.desc}</p>
