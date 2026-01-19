@@ -64,7 +64,7 @@ export function Hero() {
 
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="max-w-4xl">
-          <p className="section-label mb-4 text-black-lighter">/ AI-POWERED DEVELOPMENT</p>
+          <p className="section-label mb-4 text-black-lighter">// AI-POWERED DEVELOPMENT</p>
           <h1 className="text-display mb-6 text-black">
             Ship 10x faster.<br />
             <span className="text-white bg-black px-3 py-1 inline-block">Code cleaner.</span>

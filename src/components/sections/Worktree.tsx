@@ -4,7 +4,7 @@ export function Worktree() {
       <div className="max-w-6xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
-            <p className="section-label text-primary-dark/60 mb-4">/ GIT WORKTREE ISOLATION</p>
+            <p className="section-label text-primary-dark/60 mb-4">// GIT WORKTREE ISOLATION</p>
             <h2 className="text-h2 mb-6">No more branch conflicts</h2>
             <p className="text-lg text-text-body mb-6">
               Every ticket pipeline runs in its own isolated git worktree. This means:

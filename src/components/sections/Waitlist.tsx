@@ -74,7 +74,7 @@ export function Waitlist() {
   return (
     <section id="waitlist" className="py-12 px-6 bg-primary scroll-mt-16">
       <div className="max-w-2xl mx-auto text-center">
-        <p className="section-label text-primary-dark/60 mb-4">/ JOIN THE WAITLIST</p>
+        <p className="section-label text-primary-dark/60 mb-4">// JOIN THE WAITLIST</p>
         <h2 className="text-h2 mb-4">Ship smarter, not harder</h2>
         <p className="text-lg text-text-body mb-8">
           Join the waitlist. Early adopters get founder pricing and direct support.
