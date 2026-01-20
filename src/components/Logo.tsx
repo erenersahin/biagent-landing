@@ -19,11 +19,11 @@ export const LogoConnectedDots = ({ size = 32 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 32 32" fill="none">
     <rect width="32" height="32" rx="6" fill="#202020" />
     {/* Left dot (Human) */}
-    <circle cx="10" cy="16" r="4" fill="#F0FB29" />
+    <circle cx="10" cy="16" r="2.5" fill="#F0FB29" />
     {/* Right dot (AI) */}
-    <circle cx="22" cy="16" r="4" fill="#F0FB29" />
+    <circle cx="22" cy="16" r="2.5" fill="#F0FB29" />
     {/* Bidirectional line */}
-    <rect x="14" y="15" width="4" height="2" fill="#F0FB29" />
+    <line x1="12.5" y1="16" x2="19.5" y2="16" stroke="#F0FB29" strokeWidth="1" strokeLinecap="round" />
   </svg>
 )
 

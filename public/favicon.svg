@@ -1,4 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="4" fill="#202020"/>
-  <text x="16" y="22" font-family="IBM Plex Mono, monospace" font-size="16" font-weight="500" fill="#F0FB29" text-anchor="middle">B</text>
+  <rect width="32" height="32" rx="6" fill="#202020"/>
+  <circle cx="10" cy="16" r="2.5" fill="#F0FB29"/>
+  <circle cx="22" cy="16" r="2.5" fill="#F0FB29"/>
+  <line x1="12.5" y1="16" x2="19.5" y2="16" stroke="#F0FB29" stroke-width="1" stroke-linecap="round"/>
 </svg>
